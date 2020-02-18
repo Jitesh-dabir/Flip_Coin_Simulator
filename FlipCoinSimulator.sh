@@ -2,16 +2,53 @@
 
 echo ".............................. Welcome to Flip Coin Simulation ............................."
 
-#VARIABLE
-isFlip=1
+#DECLARE A DICTIONARY
+declare -A flipStore
 
-#GENERATE RANDOM NUMBER
-randomNumber=$((RANDOM%2))
+#VARIABLES
+isFlip=0
+maximum=0
+temp=0
 
-#CHECKING HEADS OR TAILS
-if [ $randomNumber -eq $isFlip ]
-then
-	echo "It is Heads"
-else
-	echo "It is Tails"
-fi
+#FUNCTION TO FIND HEAD AND TAIL COMBINATION
+function findFlip()
+{
+	for((index=0; index<$1; index++))
+	do
+		side=""
+		for((i=0; i<$2; i++))
+		do
+			#GENERATE RANDOM NUMBER
+			randomNumber=$((RANDOM%2))
+			if [ $randomNumber -eq $isFlip ]
+			then
+				side+=H
+			else
+				side+=T
+			fi
+		done
+		flipStore[$side]=$((${flipStore[$side]}+1))
+	done
+	echo "Count of all combination     :${flipStore[@]}"
+}
+
+
+#FUNCTION TO FIND PERCENTAGE
+function findPercentageFlip()
+{
+	for j in ${!flipStore[@]}
+	{
+		flipStore[$j]=`echo "scale=2; $((${flipStore[$j]}))/$times*100 " | bc`
+	}
+}
+
+#CHECKING HEADS OR TAILS COMBINATIONS
+read -p "Enter number of times you want to flip:" times
+read -p "Enter choice 1)Singlet:" coins
+case $coins in
+	1)
+	findFlip $times $coins
+	findPercentageFlip
+	echo "All head and tail combination:${!flipStore[@]}"
+	;;
+esac
