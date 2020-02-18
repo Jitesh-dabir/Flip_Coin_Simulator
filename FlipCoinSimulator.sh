@@ -44,7 +44,7 @@ function findPercentageFlip()
 
 #CHECKING HEADS OR TAILS COMBINATIONS
 read -p "Enter number of times you want to flip:" times
-read -p "Enter choice 1)Singlet:" coins
+read -p "Enter choice 1)Singlet 2)Doublet:" coins
 case $coins in
 	1)
 		findFlip $times $coins
@@ -52,6 +52,11 @@ case $coins in
 		echo "All head and tail combination:${!flipStore[@]}"
 		;;
 	2)
+		findFlip $times $coins
+		findPercentageFlip
+		echo "All head and tail combination:${!flipStore[@]}"
+		;;
+	3)
 		findFlip $times $coins
 		findPercentageFlip
 		echo "All head and tail combination:${!flipStore[@]}"
