@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash -x 
 
 echo ".............................. Welcome to Flip Coin Simulation ............................."
 
@@ -42,23 +42,16 @@ function findPercentageFlip()
 	}
 }
 
-#CHECKING HEADS OR TAILS COMBINATIONS
+#CHECKING HEADS OR TAILS
 read -p "Enter number of times you want to flip:" times
-read -p "Enter choice 1)Singlet 2)Doublet 3)Triplet:" coins
-case $coins in
-	1)
-		findFlip $times $coins
-		findPercentageFlip
-		echo "All head and tail combination:${!flipStore[@]}"
-		;;
-	2)
-		findFlip $times $coins
-		findPercentageFlip
-		echo "All head and tail combination:${!flipStore[@]}"
-		;;
-	3)
-		findFlip $times $coins
-		findPercentageFlip
-		echo "All head and tail combination:${!flipStore[@]}"
-		;;
-esac
+read -p "Enter choice 1)Singlet 2)Doublet 3)Triplet and so on:" coins
+findFlip $times $coins
+findPercentageFlip
+echo "All head and tail combination:${!flipStore[@]}"
+echo "percentage of all combination:${flipStore[@]}"
+
+#SORT THE DICTIONARY AND FIND MAXIMUM WINNING COMBINATION
+for k in ${!flipStore[@]}
+do
+	echo "Max winning combination      :$k ${flipStore[$k]}"
+done | sort -k2 -rn | head -1
