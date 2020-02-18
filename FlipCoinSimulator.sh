@@ -1,4 +1,4 @@
-#!/bin/bash -x 
+#!/bin/bash -x
 
 echo ".............................. Welcome to Flip Coin Simulation ............................."
 
@@ -39,6 +39,12 @@ function findPercentageFlip()
 	for j in ${!flipStore[@]}
 	{
 		flipStore[$j]=`echo "scale=2; $((${flipStore[$j]}))/$times*100 " | bc`
+		temp=${flipStore[$j]}
+		if (( $(echo "$temp >= $maximum"| bc) ))
+		then
+			maximum=$temp
+			key=$j
+		fi
 	}
 }
 
@@ -49,9 +55,4 @@ findFlip $times $coins
 findPercentageFlip
 echo "All head and tail combination:${!flipStore[@]}"
 echo "percentage of all combination:${flipStore[@]}"
-
-#SORT THE DICTIONARY AND FIND MAXIMUM WINNING COMBINATION
-for k in ${!flipStore[@]}
-do
-	echo "Max winning combination      :$k ${flipStore[$k]}"
-done | sort -k2 -rn | head -1
+echo "Max winning combination      :" $maximum "-" $key
