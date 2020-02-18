@@ -47,13 +47,13 @@ read -p "Enter number of times you want to flip:" times
 read -p "Enter choice 1)Singlet:" coins
 case $coins in
 	1)
-	findFlip $times $coins
-	findPercentageFlip
-	echo "All head and tail combination:${!flipStore[@]}"
-	;;
+		findFlip $times $coins
+		findPercentageFlip
+		echo "All head and tail combination:${!flipStore[@]}"
+		;;
 	2)
-   findFlip $times $coins
-   findPercentageFlip
-   echo "All head and tail combination:${!flipStore[@]}"
-   ;;
+		findFlip $times $coins
+		findPercentageFlip
+		echo "All head and tail combination:${!flipStore[@]}"
+		;;
 esac
