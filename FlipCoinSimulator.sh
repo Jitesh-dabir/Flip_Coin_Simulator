@@ -33,7 +33,7 @@ function findFlip()
 }
 
 
-#FUNCTION TO FIND PERCENTAGE
+#FUNCTION TO FIND PERCENTAGE AND ALSO FIND MAXIMUM HEAD OR TAIL WINNING COMBINANTION
 function findPercentageFlip()
 {
 	for j in ${!flipStore[@]}
