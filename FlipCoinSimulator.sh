@@ -56,9 +56,4 @@ case $coins in
 		findPercentageFlip
 		echo "All head and tail combination:${!flipStore[@]}"
 		;;
-	3)
-		findFlip $times $coins
-		findPercentageFlip
-		echo "All head and tail combination:${!flipStore[@]}"
-		;;
 esac
