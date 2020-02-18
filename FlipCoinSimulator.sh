@@ -51,7 +51,8 @@ echo "All head and tail combination:${!flipStore[@]}"
 echo "percentage of all combination:${flipStore[@]}"
 
 #SORT THE DICTIONARY AND FIND MAXIMUM WINNING COMBINATION
-for k in ${!flipStore[@]}
+echo " Winning Combination Is : "
+for i in ${!flipStore[@]}
 do
-	echo "Max winning combination      :$k ${flipStore[$k]}"
+	echo "$i ${flipStore[$i]}"
 done | sort -k2 -rn | head -1
